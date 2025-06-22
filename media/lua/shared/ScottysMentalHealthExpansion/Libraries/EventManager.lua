@@ -1,6 +1,9 @@
 -- Mental Health Event Manager Library
 -- Handles custom event registration and triggering for the mental health system
 
+require "ScottysMentalHealthExpansion/Config"
+require "ScottysMentalHealthExpansion/Utils"
+
 MentalHealthEventManager = {}
 
 -- Event registry

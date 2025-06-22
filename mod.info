@@ -2,3 +2,4 @@ name=Scotty's Mental Health Expansion
 poster=poster.png
 description=This mod introduces comprehensive mental health realism to Project Zomboid by simulating psychological conditions survivors may experience during the apocalypse. The goal is to increase immersion, narrative possibilities, and character complexity through dynamic mental health tracking, realistic symptom manifestation, coping mechanisms, medication systems, and a dedicated Mental Health UI tab within the character health screen.
 id=ScottysMentalHealthExpansion
+pack=ScottysMentalHealthExpansion

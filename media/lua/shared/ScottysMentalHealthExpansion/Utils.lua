@@ -359,7 +359,7 @@ end
 
 -- Debug Utilities
 function MentalHealthUtils.debugPrint(message, level)
-    if not MentalHealthConfig.DEBUG_MODE then return end
+    if not MentalHealthConfig or not MentalHealthConfig.DEBUG_MODE then return end
     
     level = level or "INFO"
     local timestamp = MentalHealthUtils.getCurrentGameHours()
