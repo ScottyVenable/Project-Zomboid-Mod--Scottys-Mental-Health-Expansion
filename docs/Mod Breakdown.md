@@ -1,6 +1,6 @@
 **Mod Title:** Project Zomboid: Mental Health Expansion
 
-**Game:** Project Zomboid (Build 41+)
+**Game:** Project Zomboid (Build 41.78.16+)
 
 **Version:** 1.0.0
 

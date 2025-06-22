@@ -1,6 +1,6 @@
 # Mental Health Expansion for Project Zomboid
 
-![Project Zomboid](https://img.shields.io/badge/Project%20Zomboid-Build%2041+-green)
+![Project Zomboid](https://img.shields.io/badge/Project%20Zomboid-Build%2041.78.16+-green)
 ![Version](https://img.shields.io/badge/Version-1.0-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 

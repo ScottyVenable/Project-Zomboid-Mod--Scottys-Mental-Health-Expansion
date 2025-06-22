@@ -469,4 +469,6 @@ function BipolarSystem.trackMood(player, moodRating)
 end
 
 -- Integration with main mental health system
-Events.OnCreatePlayer.Add(BipolarSystem.initBipolarData)
+Events.OnCreatePlayer.Add(function(playerIndex, player)
+    BipolarSystem.initBipolarData(player)
+end)

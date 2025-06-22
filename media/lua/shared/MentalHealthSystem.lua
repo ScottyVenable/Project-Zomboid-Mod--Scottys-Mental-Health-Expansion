@@ -445,7 +445,9 @@ function MentalHealthSystem.writeJournal(player)
 end
 
 -- Event listeners
-Events.OnCreatePlayer.Add(MentalHealthSystem.initPlayer)
+Events.OnCreatePlayer.Add(function(playerNum, player)
+    MentalHealthSystem.initPlayer(player)
+end)
 Events.OnPlayerUpdate.Add(MentalHealthSystem.updateMentalHealth)
 
 -- Kill zombie trigger

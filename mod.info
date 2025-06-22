@@ -3,5 +3,5 @@ poster=poster.png
 id=MentalHealthExpansion
 description=Introduces mental health realism to Project Zomboid by simulating psychological conditions survivors may experience during the apocalypse. Features dynamic mental health tracking, fictional medications, coping mechanisms, and a dedicated Mental Health UI.
 url=https://github.com/ScottyVenable/Project-Zomboid-Mod--Scottys-Mental-Health-Expansion
-modversion=1.0
-pzversion=42.9.0
+modversion=1.0.0
+pzversion=41.78.16

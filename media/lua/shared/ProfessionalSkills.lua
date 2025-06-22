@@ -244,4 +244,6 @@ function ProfessionalSkills.trainSurvivor(professional, student, skillType)
 end
 
 -- Initialize professional skills on character creation
-Events.OnCreatePlayer.Add(ProfessionalSkills.initProfessionalSkills)
+Events.OnCreatePlayer.Add(function(playerIndex, player)
+    ProfessionalSkills.initProfessionalSkills(player)
+end)

@@ -406,5 +406,7 @@ function HallucinationSystem.getHallucinationSummary(player)
 end
 
 -- Integration with main mental health system
-Events.OnCreatePlayer.Add(HallucinationSystem.initHallucinationData)
+Events.OnCreatePlayer.Add(function(playerIndex, player)
+    HallucinationSystem.initHallucinationData(player)
+end)
 Events.OnPlayerUpdate.Add(HallucinationSystem.checkForHallucinations)
