@@ -1,0 +1,7 @@
+name=Mental Health Expansion
+poster=poster.png
+id=MentalHealthMod
+description=Introduces mental health realism to Project Zomboid by simulating psychological conditions survivors may experience during the apocalypse. Features dynamic mental health tracking, fictional medications, coping mechanisms, and a dedicated Mental Health UI.
+url=
+modversion=1.0
+pzversion=41.78.16

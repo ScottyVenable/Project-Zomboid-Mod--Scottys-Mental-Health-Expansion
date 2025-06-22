@@ -1,0 +1,60 @@
+module Base
+{
+    item Serizon
+    {
+        DisplayName = Serizon (SSRI),
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.05,
+        Tooltip = "Treats depressive symptoms over time. May cause drowsiness. Take once daily.",
+        Icon = Pills,
+        Tags = Drug,
+        OnEat = MentalHealthSystem.takeSerizon,
+    }
+    
+    item Kaletraxin
+    {
+        DisplayName = Kaletraxin,
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.1,
+        Tooltip = "Fast-acting anxiety relief. Short duration effect. Use as needed.",
+        Icon = Pills,
+        Tags = Drug,
+        OnEat = MentalHealthSystem.takeKaletraxin,
+    }
+    
+    item Thresta
+    {
+        DisplayName = Thresta,
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.03,
+        Tooltip = "Antipsychotic medication. Reduces hallucinations and psychotic symptoms.",
+        Icon = Pills,
+        Tags = Drug,
+        OnEat = MentalHealthSystem.takeThresta,
+    }
+    
+    item TherapyJournal
+    {
+        DisplayName = Therapy Journal,
+        Type = Literature,
+        Weight = 0.3,
+        Tooltip = "A journal for recording thoughts and emotions. Helps process trauma and reduce mental distress.",
+        Icon = Book,
+        CanBeWrite = true,
+        PageToWrite = 50,
+        Tags = Literature,
+    }
+    
+    item TeddyBear
+    {
+        DisplayName = Comfort Teddy Bear,
+        Type = Normal,
+        Weight = 0.2,
+        Tooltip = "A soft teddy bear that provides emotional comfort during difficult times.",
+        Icon = Bag_DuffelBag,
+        Tags = Comfort,
+    }
+}
