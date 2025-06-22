@@ -1,0 +1,159 @@
+profession pharmacist
+{
+    name = "Pharmacist",
+    description = "You specialized in medications and their effects. You have extensive knowledge of psychiatric drugs and can optimize medication regimens for mental health treatment.",
+    cost = 4,
+    
+    traits = {
+        EagleEyed = 1,
+        KeenHearing = 1,
+    },
+    
+    skills = {
+        Chemistry = 2,
+        FirstAid = 1,
+        MentalHealthLiteracy = 3,
+    },
+    
+    startingItems = {
+        "Shirt_Scrubs",
+        "Trousers_Scrubs",
+        "Hat_SurgicalMask",
+        "Glasses_Normal",
+        "Pills",
+        "Pills",
+        "Book",
+        "Magazine",
+        "Pen",
+    },
+}
+
+profession psychologist
+{
+    name = "Psychologist (PhD)",
+    description = "You hold a doctorate in psychology and specialize in psychological assessment and therapy. You can provide advanced therapeutic interventions and lead group therapy sessions.",
+    cost = 6,
+    
+    traits = {
+        FastLearner = 1,
+        KeenHearing = 1,
+        Pacifist = 1,
+    },
+    
+    skills = {
+        MentalHealthLiteracy = 4,
+        Psychology = 3,
+        Leadership = 1,
+    },
+    
+    startingItems = {
+        "Shirt_FormalWhite",
+        "Trousers_Suit",
+        "Tie_Full",
+        "Shoes_Black",
+        "Glasses_Normal",
+        "Book",
+        "Book",
+        "Magazine",
+        "Pen",
+        "Notebook",
+    },
+}
+
+profession psychiatrist
+{
+    name = "Psychiatrist (MD)",
+    description = "You are a medical doctor specializing in mental health. You can prescribe psychiatric medications and provide comprehensive medical and psychological treatment.",
+    cost = 8,
+    
+    traits = {
+        FastLearner = 1,
+        KeenHearing = 1,
+        EagleEyed = 1,
+    },
+    
+    skills = {
+        MentalHealthLiteracy = 4,
+        FirstAid = 3,
+        Chemistry = 2,
+        Psychology = 2,
+    },
+    
+    startingItems = {
+        "Shirt_FormalWhite",
+        "Trousers_Suit",
+        "Tie_Full",
+        "Shoes_Black",
+        "Hat_BaseballCapBlue",
+        "Stethoscope",
+        "Pills",
+        "Pills",
+        "Book",
+        "Magazine",
+        "Pen",
+        "Notebook",
+    },
+}
+
+profession bhp
+{
+    name = "Behavioral Health Professional",
+    description = "You work in community mental health providing case management and crisis intervention. You specialize in coordinating care and community resources.",
+    cost = 4,
+    
+    traits = {
+        Organized = 1,
+        KeenHearing = 1,
+    },
+    
+    skills = {
+        MentalHealthLiteracy = 3,
+        Psychology = 2,
+        SocialWork = 2,
+        Leadership = 1,
+    },
+    
+    startingItems = {
+        "Shirt_CropTopNoArmTINT",
+        "Trousers_DefaultTEXTURE",
+        "Shoes_Sneakers",
+        "Bag_Schoolbag",
+        "Book",
+        "Magazine",
+        "Pen",
+        "Notebook",
+        "FirstAidKit",
+    },
+}
+
+profession dsp
+{
+    name = "Designated Support Professional",
+    description = "You provide direct support to individuals with developmental and mental disabilities. You excel at behavioral support and helping others develop coping skills.",
+    cost = 3,
+    
+    traits = {
+        Patient = 1,
+        KeenHearing = 1,
+        Brave = 1,
+    },
+    
+    skills = {
+        MentalHealthLiteracy = 2,
+        Psychology = 1,
+        SocialWork = 2,
+        FirstAid = 1,
+    },
+    
+    startingItems = {
+        "Shirt_CropTopNoArmTINT",
+        "Trousers_DefaultTEXTURE",
+        "Shoes_Sneakers",
+        "Bag_Schoolbag",
+        "Book",
+        "Magazine",
+        "Pen",
+        "Notebook",
+        "TeddyBear",
+    },
+}

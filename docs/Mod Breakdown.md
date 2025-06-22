@@ -914,3 +914,65 @@ This mod is designed for educational and entertainment purposes only. It should 
 **Last Updated:** [Date]  
 **Document Version:** 2.0  
 **Mod Version:** 1.0.0
+
+---
+
+### **Disorder-Specific Future Expansion Ideas:**
+
+### **Depression Expansion Ideas:**
+
+**Seasonal Affective Disorder (SAD) Variant:**
+* Light-sensitive depression that worsens during winter months
+* Improved symptoms with light therapy and bright environments
+* Weather-dependent mood fluctuations
+* Vitamin D deficiency simulation affecting mood
+
+**Anhedonia Simulation:**
+* Inability to feel pleasure from normally enjoyable activities
+* Diminished rewards from positive activities (reading, music, etc.)
+* Gradual loss of interest in hobbies and survival tasks
+* Recovery of pleasure response with treatment
+
+**Psychomotor Symptoms:**
+* Visible movement slowdown during severe episodes
+* Difficulty initiating actions (delayed response to player input)
+* Physical fatigue affecting all activities
+* Restoration of normal movement with recovery
+
+**Social Withdrawal Mechanics:**
+* Reduced benefits from multiplayer interactions
+* Difficulty maintaining friendships/alliances
+* Isolation reinforcing depressive symptoms
+* Social reintegration as part of recovery process
+
+---
+
+### **Anxiety Expansion Ideas:**
+
+**Specific Phobia Development:**
+* Agoraphobia: Fear of open spaces and crowds
+* Claustrophobia: Panic in enclosed spaces
+* Blood phobia: Severe reactions to gore and injury
+* Dynamic phobia development based on traumatic experiences
+
+**Social Anxiety Disorder:**
+* Intense fear of judgment in multiplayer interactions
+* Difficulty communicating with other players
+* Physical symptoms (blushing, sweating, trembling)
+* Avoidance of group activities and social situations
+
+**Panic Disorder with Agoraphobia:**
+* Avoidance of places where escape might be difficult
+* Fear of having panic attacks in public spaces
+* Gradual shrinking of "safe zones"
+* Exposure therapy mechanics for recovery
+
+**Generalized Worry Mechanics:**
+* Constant background anxiety about future events
+* Catastrophic thinking patterns
+* Difficulty concentrating on tasks
+* Physical tension and restlessness
+
+---
+
+### **PTSD Expansion Ideas:**
