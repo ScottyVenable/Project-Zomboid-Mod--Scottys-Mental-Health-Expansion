@@ -30,14 +30,14 @@ Surviving the zombie apocalypse isn't just about physical health - mental well-b
 - **Anxiety** - Increases panic and stress responses
 - **PTSD** - Triggers from blood, corpses, and zombie encounters
 - **Insomnia** - Disrupts sleep patterns and increases fatigue
-- **Psychosis** - Rare auditory hallucinations at severe levels
+ - **Psychosis** - Hallucinations escalate from unsettling sounds to disturbing visual and even tactile experiences
 - **OCD** - Compulsive behaviors (planned feature)
 
 ### Symptoms & Effects
 - Increased fatigue and panic responses
 - Random panic attacks during high stress
 - Sleep disruption and difficulty resting
-- Auditory hallucinations ("Did you hear that?")
+ - Hallucinations ranging from eerie sounds to brief visual flashes and occasional phantom sensations
 - XP penalties during severe episodes (planned)
 
 ## 💊 Medication System
