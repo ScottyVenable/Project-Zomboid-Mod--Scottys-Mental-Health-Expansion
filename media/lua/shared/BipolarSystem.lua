@@ -16,7 +16,7 @@ BipolarSystem.MOOD_MIXED = 4
 function BipolarSystem.initBipolarData(player)
     local modData = player:getModData()
     if not modData.MentalHealth then return end
-    
+
     if not modData.MentalHealth.bipolar then
         modData.MentalHealth.bipolar = {
             severity = 0,                    -- Overall bipolar severity 0-100
@@ -51,6 +51,18 @@ function BipolarSystem.initBipolarData(player)
             episodePrevention = 0,
             crisisPlanning = 0
         }
+    end
+
+    -- Set subtype based on chosen traits
+    if player:HasTrait("BipolarI") then
+        modData.MentalHealth.bipolar.subtype = BipolarSystem.BIPOLAR_I
+        modData.MentalHealth.bipolar.severity = 20
+    elseif player:HasTrait("BipolarII") then
+        modData.MentalHealth.bipolar.subtype = BipolarSystem.BIPOLAR_II
+        modData.MentalHealth.bipolar.severity = 15
+    elseif player:HasTrait("BipolarIPsychotic") then
+        modData.MentalHealth.bipolar.subtype = BipolarSystem.BIPOLAR_I_PSYCHOTIC
+        modData.MentalHealth.bipolar.severity = 25
     end
 end
 
@@ -87,9 +99,11 @@ function BipolarSystem.processMoodStabilizers(player, bipolar, currentTime)
         
         -- Update blood level (half-life simulation)
         if timeSinceTaken > 0 then
-            bipolar.moodStabilizers.lithizone.bloodLevel = 
+            bipolar.moodStabilizers.lithizone.bloodLevel =
                 bipolar.moodStabilizers.lithizone.bloodLevel * math.pow(0.5, timeSinceTaken / 24)
         end
+        local stats = player:getStats()
+        stats:setThirst(math.min(1.0, stats:getThirst() + bipolar.moodStabilizers.lithizone.bloodLevel * 0.002))
         
         -- Check therapeutic range
         if bipolar.moodStabilizers.lithizone.bloodLevel >= 0.6 and 
@@ -101,6 +115,15 @@ function BipolarSystem.processMoodStabilizers(player, bipolar, currentTime)
             player:getStats():setFatigue(math.min(1.0, player:getStats():getFatigue() + 0.2))
             if ZombRand(100) < 5 then
                 player:Say("I feel shaky and nauseous... too much lithium?")
+            end
+        end
+
+        -- Heavy toxicity
+        if bipolar.moodStabilizers.lithizone.bloodLevel > 1.5 then
+            player:getStats():setFatigue(math.min(1.0, player:getStats():getFatigue() + 0.1))
+            player:getStats():setStress(math.min(1.0, player:getStats():getStress() + 0.05))
+            if ZombRand(100) < 10 then
+                player:Say("I'm really sick from all this Lithizone...")
             end
         end
         
@@ -119,8 +142,10 @@ function BipolarSystem.processMoodStabilizers(player, bipolar, currentTime)
             else
                 bipolar.moodSeverity = math.max(0, bipolar.moodSeverity - 0.3)
             end
+            local stats = player:getStats()
+            stats:setFatigue(math.min(1.0, stats:getFatigue() + 0.005))
         else
-            bipolar.moodStabilizers.valprex.level = 
+            bipolar.moodStabilizers.valprex.level =
                 math.max(0, bipolar.moodStabilizers.valprex.level - 1)
         end
     end
@@ -133,8 +158,15 @@ function BipolarSystem.processMoodStabilizers(player, bipolar, currentTime)
             if bipolar.currentMoodState == BipolarSystem.MOOD_DEPRESSED then
                 bipolar.moodSeverity = math.max(0, bipolar.moodSeverity - 0.8)
             end
+            local mh = player:getModData().MentalHealth
+            if mh then
+                mh.insomnia = math.min(100, mh.insomnia + 0.1)
+            end
+            if ZombRand(1000) < 1 then
+                player:Say("My skin feels irritated from Lamotrigex...")
+            end
         else
-            bipolar.moodStabilizers.lamotrigex.level = 
+            bipolar.moodStabilizers.lamotrigex.level =
                 math.max(0, bipolar.moodStabilizers.lamotrigex.level - 1)
         end
     end
@@ -403,6 +435,15 @@ function BipolarSystem.takeLamotrigex(player)
             math.min(2, bipolar.moodStabilizers.lamotrigex.level + 1)
         bipolar.moodStabilizers.lamotrigex.lastTaken = getGameTime():getWorldAgeHours()
         player:Say("This helps prevent the depression episodes...")
+    end
+end
+
+-- Unlock mood tracking after reading workbook
+function BipolarSystem.useMoodTracking(player)
+    local bipolar = player:getModData().MentalHealth.bipolar
+    if bipolar then
+        bipolar.moodTrackingSkill = 1
+        player:Say("I can start keeping track of my moods now.")
     end
 end
 
