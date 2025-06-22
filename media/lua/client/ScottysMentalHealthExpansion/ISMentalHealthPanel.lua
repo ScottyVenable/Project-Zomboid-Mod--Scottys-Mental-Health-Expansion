@@ -74,97 +74,97 @@ function ISMentalHealthPanel:render()
     
     if not mh then return end
     
-    local y = 15
+    local y = 20
     local lineHeight = 18
-    local barWidth = 120
-    local barHeight = 12
     
-    -- Title
+    -- Draw title
     self:drawText("Mental Health Status", 10, y, 1, 1, 1, 1, UIFont.Medium)
     y = y + lineHeight * 2
     
-    -- Mental Health Conditions with progress bars
-    self:drawText("Conditions:", 10, y, 0.9, 0.9, 0.9, 1, UIFont.Small)
-    y = y + lineHeight + 5
-    
-    -- Depression
-    local r, g, b = self:getSeverityColor(mh.depression)
-    self:drawText("Depression:", 10, y, 1, 1, 1, 1, UIFont.Small)
-    self:drawProgressBar(100, y, barWidth, barHeight, mh.depression, 100, r, g, b)
-    self:drawText(math.floor(mh.depression) .. "% (" .. self:getSeverityText(mh.depression) .. ")", 
-                  barWidth + 110, y, r, g, b, 1, UIFont.Small)
-    y = y + lineHeight + 3
-    
-    -- Anxiety
-    r, g, b = self:getSeverityColor(mh.anxiety)
-    self:drawText("Anxiety:", 10, y, 1, 1, 1, 1, UIFont.Small)
-    self:drawProgressBar(100, y, barWidth, barHeight, mh.anxiety, 100, r, g, b)
-    self:drawText(math.floor(mh.anxiety) .. "% (" .. self:getSeverityText(mh.anxiety) .. ")", 
-                  barWidth + 110, y, r, g, b, 1, UIFont.Small)
-    y = y + lineHeight + 3
-    
-    -- PTSD
-    r, g, b = self:getSeverityColor(mh.ptsd)
-    self:drawText("PTSD:", 10, y, 1, 1, 1, 1, UIFont.Small)
-    self:drawProgressBar(100, y, barWidth, barHeight, mh.ptsd, 100, r, g, b)
-    self:drawText(math.floor(mh.ptsd) .. "% (" .. self:getSeverityText(mh.ptsd) .. ")", 
-                  barWidth + 110, y, r, g, b, 1, UIFont.Small)
-    y = y + lineHeight + 3
-    
-    -- Insomnia
-    r, g, b = self:getSeverityColor(mh.insomnia)
-    self:drawText("Insomnia:", 10, y, 1, 1, 1, 1, UIFont.Small)
-    self:drawProgressBar(100, y, barWidth, barHeight, mh.insomnia, 100, r, g, b)
-    self:drawText(math.floor(mh.insomnia) .. "% (" .. self:getSeverityText(mh.insomnia) .. ")", 
-                  barWidth + 110, y, r, g, b, 1, UIFont.Small)
-    y = y + lineHeight + 3
-    
-    -- Psychosis
-    r, g, b = self:getSeverityColor(mh.psychosis)
-    self:drawText("Psychosis:", 10, y, 1, 1, 1, 1, UIFont.Small)
-    self:drawProgressBar(100, y, barWidth, barHeight, mh.psychosis, 100, r, g, b)
-    self:drawText(math.floor(mh.psychosis) .. "% (" .. self:getSeverityText(mh.psychosis) .. ")",
-                  barWidth + 110, y, r, g, b, 1, UIFont.Small)
-    y = y + lineHeight + 8
-
-    -- Bipolar status
-    if mh.bipolar and mh.bipolar.subtype > 0 then
-        local moodNames = {"Stable", "Depressed", "Hypomanic", "Manic", "Mixed"}
-        self:drawText("Bipolar Severity: " .. math.floor(mh.bipolar.severity) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
-        y = y + lineHeight
-        self:drawText("Mood: " .. moodNames[mh.bipolar.currentMoodState + 1] .. " (" .. math.floor(mh.bipolar.moodSeverity) .. "%)", 10, y, 1, 1, 1, 1, UIFont.Small)
-        y = y + lineHeight + 5
-    end
-    
-    -- Active Medications
-    self:drawText("Active Medications:", 10, y, 0.8, 0.8, 1, 1, UIFont.Small)
+    -- Draw condition levels
+    self:drawText("Depression: " .. math.floor(mh.depression) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
+    self:drawProgressBar(150, y, 100, 12, mh.depression, 100, 0.8, 0.2, 0.2)
     y = y + lineHeight
     
-    local hasMeds = false
+    self:drawText("Anxiety: " .. math.floor(mh.anxiety) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
+    self:drawProgressBar(150, y, 100, 12, mh.anxiety, 100, 0.8, 0.8, 0.2)
+    y = y + lineHeight
+    
+    self:drawText("PTSD: " .. math.floor(mh.ptsd) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
+    self:drawProgressBar(150, y, 100, 12, mh.ptsd, 100, 0.6, 0.3, 0.8)
+    y = y + lineHeight
+    
+    self:drawText("Insomnia: " .. math.floor(mh.insomnia) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
+    self:drawProgressBar(150, y, 100, 12, mh.insomnia, 100, 0.3, 0.6, 0.8)
+    y = y + lineHeight
+    
+    self:drawText("Psychosis: " .. math.floor(mh.psychosis) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
+    self:drawProgressBar(150, y, 100, 12, mh.psychosis, 100, 0.5, 0.2, 0.5)
+    y = y + lineHeight
+    
+    self:drawText("OCD: " .. math.floor(mh.ocd) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
+    self:drawProgressBar(150, y, 100, 12, mh.ocd, 100, 0.2, 0.8, 0.4)
+    y = y + lineHeight * 2
+    
+    -- Active medications
+    self:drawText("Active Medications:", 10, y, 1, 1, 1, 1, UIFont.Small)
+    y = y + lineHeight
+    
     if mh.medications.serizon.level > 0 then
-        self:drawText("• Serizon (Level " .. mh.medications.serizon.level .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
-        y = y + lineHeight - 2
-        hasMeds = true
+        self:drawText("• Serizon (Level " .. mh.medications.serizon.level .. ")", 20, y, 0.8, 0.8, 1, 1, UIFont.Small)
+        y = y + lineHeight
     end
     
     if mh.medications.kaletraxin.level > 0 then
-        self:drawText("• Kaletraxin (Level " .. mh.medications.kaletraxin.level .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
-        y = y + lineHeight - 2
-        hasMeds = true
+        self:drawText("• Kaletraxin (Level " .. mh.medications.kaletraxin.level .. ")", 20, y, 0.8, 0.8, 1, 1, UIFont.Small)
+        y = y + lineHeight
     end
     
     if mh.medications.thresta.level > 0 then
-        self:drawText("• Thresta (Level " .. mh.medications.thresta.level .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
-        y = y + lineHeight - 2
-        hasMeds = true
+        self:drawText("• Thresta (Level " .. mh.medications.thresta.level .. ")", 20, y, 0.8, 0.8, 1, 1, UIFont.Small)
+        y = y + lineHeight
     end
+end
 
-    local bipolar = mh.bipolar
-    if bipolar then
-        if bipolar.moodStabilizers.lithizone.level > 0 then
-            self:drawText("• Lithizone (" .. string.format("%.1f", bipolar.moodStabilizers.lithizone.bloodLevel) .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
-            y = y + lineHeight - 2
-            hasMeds = true
+function ISMentalHealthPanel:onJournalClick()
+    local inventory = self.player:getInventory()
+    if inventory:contains("TherapyJournal") then
+        if MentalHealthSystem then
+            MentalHealthSystem.writeJournal(self.player)
+        end
+    else
+        self.player:Say("I need a therapy journal to write in...")
+    end
+end
+
+function ISMentalHealthPanel:onRestClick()
+    if not self.player:isOutside() and self.player:getStats():getFatigue() < 0.5 then
+        local mh = self.player:getModData().MentalHealth
+        if mh then
+            mh.anxiety = math.max(0, mh.anxiety - 2)
+            mh.depression = math.max(0, mh.depression - 1)
+            self.player:Say("Taking a moment to center myself...")
+        end
+    else
+        self.player:Say("I need to be in a safe, calm place to properly rest...")
+    end
+end
+
+function ISMentalHealthPanel:update()
+    ISPanel.update(self)
+    
+    -- Update button availability
+    local inventory = self.player:getInventory()
+    if self.journalButton then
+        self.journalButton.enable = inventory:contains("TherapyJournal")
+    end
+    
+    if self.restButton then
+        self.restButton.enable = not self.player:isOutside() and self.player:getStats():getFatigue() < 0.5
+    end
+end
+
+print("Mental Health Panel loaded successfully")
         end
         if bipolar.moodStabilizers.valprex.level > 0 then
             self:drawText("• Valprex (Level " .. math.floor(bipolar.moodStabilizers.valprex.level) .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)

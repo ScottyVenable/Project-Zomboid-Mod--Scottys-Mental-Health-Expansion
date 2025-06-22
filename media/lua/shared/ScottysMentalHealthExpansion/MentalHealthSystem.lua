@@ -26,6 +26,7 @@ function MentalHealthSystem.initPlayer(player)
             journalEntries = 0,
             comfortItems = 0
         }
+        print("Mental Health System initialized for player")
     end
 end
 
@@ -34,44 +35,38 @@ function MentalHealthSystem.updateMentalHealth(player)
     local modData = player:getModData()
     local mh = modData.MentalHealth
     
-    if not mh then return end
+    if not mh then 
+        MentalHealthSystem.initPlayer(player)
+        return 
+    end
     
     local currentTime = getGameTime():getWorldAgeHours()
     local timeDelta = currentTime - mh.lastUpdate
     
-    -- Process medications first
+    -- Only update if enough time has passed (performance optimization)
+    if timeDelta < 0.1 then return end
+    
+    -- Process medications
     MentalHealthSystem.processMedications(player, mh, currentTime)
     
-    -- Environmental and situational triggers
+    -- Check environmental triggers
     MentalHealthSystem.checkEnvironmentalTriggers(player, mh, currentTime, timeDelta)
     
-    -- Blood and gore exposure
-    MentalHealthSystem.checkTraumaticExposure(player, mh, currentTime)
-    
-    -- Social isolation
-    MentalHealthSystem.checkIsolation(player, mh, timeDelta)
-    
-    -- Physical health impact on mental health
-    MentalHealthSystem.checkPhysicalImpact(player, mh)
-    
-    -- Apply symptoms based on conditions
+    -- Apply symptoms
     MentalHealthSystem.applySymptoms(player, mh)
     
-    -- Natural recovery factors
+    -- Natural recovery
     MentalHealthSystem.applyRecovery(player, mh, timeDelta)
-
-    -- Bipolar-specific updates
-    if BipolarSystem then
-        BipolarSystem.updateBipolar(player, mh, currentTime, timeDelta)
-    end
-
+    
+    -- Apply dynamic global adjustments based on mental health
+    MentalHealthSystem.applyDynamicGlobalAdjustments(player, mh)
+    
     mh.lastUpdate = currentTime
 end
 
--- Process active medications
+-- Process medication effects
 function MentalHealthSystem.processMedications(player, mh, currentTime)
-    
-    -- Serizon (SSRI) - Long-term depression treatment Similar to fluoxetine
+    -- Serizon - SSRI antidepressant
     if mh.medications.serizon.level > 0 then
         local timeSinceTaken = currentTime - mh.medications.serizon.lastTaken
         if timeSinceTaken < 24 then -- Active for 24 hours
@@ -85,7 +80,7 @@ function MentalHealthSystem.processMedications(player, mh, currentTime)
         end
     end
     
-    -- Kaletraxin - Fast-acting anxiety relief. Similar to benzodiazepines
+    -- Kaletraxin - Fast-acting anxiety relief
     if mh.medications.kaletraxin.level > 0 then
         local timeSinceTaken = currentTime - mh.medications.kaletraxin.lastTaken
         if timeSinceTaken < 4 then -- Active for 4 hours
@@ -95,8 +90,7 @@ function MentalHealthSystem.processMedications(player, mh, currentTime)
         end
     end
     
-    -- Thresta - Antipsychotic treatment. Similar to risperidone or olanzapine
-    -- Used for psychosis and severe anxiety
+    -- Thresta - Antipsychotic treatment
     if mh.medications.thresta.level > 0 then
         local timeSinceTaken = currentTime - mh.medications.thresta.lastTaken
         if timeSinceTaken < 12 then -- Active for 12 hours
@@ -107,9 +101,7 @@ function MentalHealthSystem.processMedications(player, mh, currentTime)
     end
 end
 
--- Check environmental triggers that affect mental health
-
--- This includes darkness, unsafe sleeping, weather, etc.
+-- Check environmental triggers
 function MentalHealthSystem.checkEnvironmentalTriggers(player, mh, currentTime, timeDelta)
     -- Darkness and unsafe sleeping
     if player:isAsleep() and (player:isOutside() or not player:getSquare():getRoom()) then
@@ -126,12 +118,15 @@ function MentalHealthSystem.checkEnvironmentalTriggers(player, mh, currentTime, 
     if RainManager.isRaining() and player:isOutside() then
         mh.depression = math.min(100, mh.depression + (timeDelta * 0.05))
     end
+    
+    -- Check for blood and corpses
+    MentalHealthSystem.checkTraumaticExposure(player, mh, currentTime)
 end
 
 -- Check for traumatic exposure
 function MentalHealthSystem.checkTraumaticExposure(player, mh, currentTime)
-    local cell = player:getCell()
     local square = player:getSquare()
+    if not square then return end
     
     -- Check for blood on current square
     if square:haveBlood() then
@@ -140,51 +135,6 @@ function MentalHealthSystem.checkTraumaticExposure(player, mh, currentTime)
             mh.anxiety = math.min(100, mh.anxiety + ZombRand(1, 3))
             mh.lastBloodSeen = currentTime
         end
-    end
-    
-    -- Check for corpses nearby
-    local objects = square:getObjects()
-    for i = 0, objects:size() - 1 do
-        local obj = objects:get(i)
-        if obj and obj:getSprite() and string.find(obj:getSprite():getName(), "corpse") then
-            if currentTime - mh.lastCorpseSeen > 2 then
-                mh.ptsd = math.min(100, mh.ptsd + ZombRand(3, 8))
-                mh.depression = math.min(100, mh.depression + ZombRand(1, 3))
-                mh.lastCorpseSeen = currentTime
-            end
-            break
-        end
-    end
-end
-
--- Check social isolation
-function MentalHealthSystem.checkIsolation(player, mh, timeDelta)
-    -- Loneliness factor (simplified - in real mod would check for NPCs/multiplayer)
-    if timeDelta > 24 then -- Been alone for more than a day
-        mh.depression = math.min(100, mh.depression + (timeDelta * 0.05))
-    end
-    
-    if timeDelta > 72 then -- Extended isolation
-        mh.psychosis = math.min(100, mh.psychosis + (timeDelta * 0.02))
-    end
-end
-
--- Check physical health impact
-function MentalHealthSystem.checkPhysicalImpact(player, mh)
-    local bodyDamage = player:getBodyDamage()
-    local overallHealth = bodyDamage:getOverallBodyHealth()
-    
-    -- Pain and injury impact
-    if overallHealth < 0.7 then
-        mh.depression = math.min(100, mh.depression + 0.1)
-        mh.anxiety = math.min(100, mh.anxiety + 0.05)
-    end
-    
-    -- Hunger impact
-    local hunger = player:getStats():getHunger()
-    if hunger > 0.8 then
-        mh.anxiety = math.min(100, mh.anxiety + 0.2)
-        mh.depression = math.min(100, mh.depression + 0.1)
     end
 end
 
@@ -195,17 +145,12 @@ function MentalHealthSystem.applySymptoms(player, mh)
     -- Depression effects
     if mh.depression > 30 then
         stats:setFatigue(math.min(1.0, stats:getFatigue() + 0.1))
-        -- Reduce XP gain slightly
-        if mh.depression > 60 then
-            -- This would need to be implemented with XP modification events
-        end
     end
     
     -- Anxiety effects
     if mh.anxiety > 40 then
         stats:setPanic(math.min(100, stats:getPanic() + 5))
         if mh.anxiety > 70 and ZombRand(1000) < 1 then
-            -- Trigger panic attack
             MentalHealthSystem.triggerPanicAttack(player, mh)
         end
     end
@@ -230,11 +175,6 @@ function MentalHealthSystem.applySymptoms(player, mh)
         if ZombRand(1000) < 1 then
             MentalHealthSystem.triggerHallucination(player, mh)
         end
-    end
-    
-    -- OCD effects
-    if mh.ocd > 40 then
-        -- Could implement compulsive behaviors here
     end
 end
 
@@ -269,14 +209,10 @@ end
 
 -- Trigger hallucination
 function MentalHealthSystem.triggerHallucination(player, mh)
-
     local hallucinationType = ZombRand(3)
     if hallucinationType == 0 then
-        -- Audio hallucination (more realistic to psychosis)
-        
-        -- Play a subtle, ambiguous sound (not always obvious or dramatic)
+        -- Auditory hallucination
         local subtleSounds = {
-            "MuffledVoices", -- soft, unintelligible voices
             "IndistinctWhisper", -- faint whispering
             "FaintKnock", -- gentle knocking
             "SoftFootsteps", -- footsteps in another room
@@ -398,6 +334,70 @@ function MentalHealthSystem.triggerHallucination(player, mh)
             "Something moved in the shadows...",
             "They're watching me.",
             "I swear I saw someone.",
+            ""
+        }
+        player:Say(hallucinations[ZombRand(#hallucinations) + 1])
+    end
+end
+
+-- Medication taking functions
+function MentalHealthSystem.takeSerizon(player)
+    local mh = player:getModData().MentalHealth
+    if mh then
+        mh.medications.serizon.level = math.min(3, mh.medications.serizon.level + 1)
+        mh.medications.serizon.lastTaken = getGameTime():getWorldAgeHours()
+        player:Say("Taking Serizon...")
+    end
+end
+
+function MentalHealthSystem.takeKaletraxin(player)
+    local mh = player:getModData().MentalHealth
+    if mh then
+        mh.medications.kaletraxin.level = math.min(2, mh.medications.kaletraxin.level + 1)
+        mh.medications.kaletraxin.lastTaken = getGameTime():getWorldAgeHours()
+        player:Say("Taking Kaletraxin...")
+    end
+end
+
+function MentalHealthSystem.takeThresta(player)
+    local mh = player:getModData().MentalHealth
+    if mh then
+        mh.medications.thresta.level = math.min(2, mh.medications.thresta.level + 1)
+        mh.medications.thresta.lastTaken = getGameTime():getWorldAgeHours()
+        player:Say("Taking Thresta...")
+    end
+end
+
+-- Journal writing therapy
+function MentalHealthSystem.writeJournal(player)
+    local mh = player:getModData().MentalHealth
+    if mh then
+        mh.journalEntries = mh.journalEntries + 1
+        mh.depression = math.max(0, mh.depression - 2)
+        mh.anxiety = math.max(0, mh.anxiety - 1)
+        mh.ptsd = math.max(0, mh.ptsd - 1)
+        player:Say("Writing helps me process these feelings...")
+    end
+end
+
+-- Event listeners
+Events.OnCreatePlayer.Add(MentalHealthSystem.initPlayer)
+Events.OnPlayerUpdate.Add(MentalHealthSystem.updateMentalHealth)
+
+-- Kill zombie trigger
+Events.OnZombieDead.Add(function(zombie)
+    local player = getPlayer()
+    if player then
+        local mh = player:getModData().MentalHealth
+        if mh then
+            local currentTime = getGameTime():getWorldAgeHours()
+            if currentTime - mh.lastZombieKill > 0.5 then -- Prevent spam
+                mh.ptsd = math.min(100, mh.ptsd + ZombRand(1, 3))
+                mh.lastZombieKill = currentTime
+            end
+        end
+    end
+end)
             ""
         }
         player:Say(hallucinations[ZombRand(#hallucinations) + 1])

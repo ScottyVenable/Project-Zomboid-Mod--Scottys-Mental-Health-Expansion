@@ -1,0 +1,90 @@
+module Base
+{
+    // Medications
+    item Serizon
+    {
+        DisplayName = "Serizon (SSRI)",
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.05,
+        Tooltip = "Antidepressant medication. Reduces depression symptoms over time.",
+        Icon = Pills,
+        Tags = Drug;Mental,
+        OnEat = MentalHealthSystem.takeSerizon,
+    }
+    
+    item Kaletraxin
+    {
+        DisplayName = "Kaletraxin",
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.08,
+        Tooltip = "Fast-acting anxiety medication. Provides quick relief but may cause drowsiness.",
+        Icon = Pills,
+        Tags = Drug;Mental,
+        OnEat = MentalHealthSystem.takeKaletraxin,
+    }
+    
+    item Thresta
+    {
+        DisplayName = "Thresta",
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.06,
+        Tooltip = "Antipsychotic medication. Reduces psychotic symptoms and severe anxiety.",
+        Icon = Pills,
+        Tags = Drug;Mental,
+        OnEat = MentalHealthSystem.takeThresta,
+    }
+    
+    // Therapy Items
+    item TherapyJournal
+    {
+        DisplayName = "Therapy Journal",
+        Type = Literature,
+        Weight = 0.3,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 50,
+        PageToWrite = 50,
+        Icon = Book,
+        Tooltip = "A journal for recording thoughts and emotions. Helps process trauma and reduce symptoms.",
+        Tags = Literature;Therapy;Mental,
+        OnRead = MentalHealthSystem.writeJournal,
+    }
+    
+    item TeddyBear
+    {
+        DisplayName = "Teddy Bear",
+        Type = Normal,
+        Weight = 0.5,
+        Icon = TennislBall,
+        Tooltip = "A soft comfort object. Provides emotional support and reduces anxiety.",
+        Tags = Comfort;Mental,
+    }
+    
+    // Self-Help Books
+    item AnxietyManual
+    {
+        DisplayName = "Managing Anxiety in Crisis",
+        Type = Literature,
+        Weight = 0.4,
+        CanBeRead = true,
+        NumberOfPages = 10,
+        Icon = Book,
+        Tooltip = "A guide to managing anxiety with breathing exercises and grounding techniques.",
+        Tags = Literature;SelfHelp;Mental,
+    }
+    
+    item DepressionGuide
+    {
+        DisplayName = "Depression: A Survivor's Guide",
+        Type = Literature,
+        Weight = 0.5,
+        CanBeRead = true,
+        NumberOfPages = 15,
+        Icon = Book,
+        Tooltip = "Comprehensive guide to understanding and managing depression.",
+        Tags = Literature;SelfHelp;Mental,
+    }
+}

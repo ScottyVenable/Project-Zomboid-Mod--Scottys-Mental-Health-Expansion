@@ -7,6 +7,9 @@
 **Mod Concept Overview:**
 This mod introduces comprehensive mental health realism to Project Zomboid by simulating psychological conditions survivors may experience during the apocalypse. The goal is to increase immersion, narrative possibilities, and character complexity through dynamic mental health tracking, realistic symptom manifestation, coping mechanisms, medication systems, and a dedicated Mental Health UI tab within the character health screen.
 
+**Mod Tags:**
+- mental-health, psychology, survival, realism, simulation, RPG, immersive, character-management, emotional-storytelling
+
 ---
 
 ### **Purpose:**
@@ -661,57 +664,58 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
 
 ---
 
-### **Enhanced Item Integration System:**
-
-**Item Synergies:**
-* Using multiple coping tools together provides bonus effects
-* Reading self-help books while holding comfort items enhances benefits
-* Combining aromatherapy with meditation doubles relaxation effects
-* Writing in journals after reading relevant self-help books provides enhanced processing
-
-**Bipolar-Specific Item Synergies:**
-* **Mood Stabilizer + Mood Tracking Chart:** Enhanced stability and episode prediction
-* **Sleep Hygiene Kit + Light Therapy:** Optimal circadian rhythm regulation
-* **Crisis Box + WRAP Kit:** Comprehensive emergency preparedness
-* **Multiple Self-Help Books:** Builds "Bipolar Expertise" skill for better self-management
-
-**Skill Development:**
-* Regular use of coping mechanisms builds "Mental Health Literacy" skill
-* Higher skill levels unlock advanced techniques and greater benefits
-* Skill progression allows teaching other players coping strategies
-* Mastery enables creation of personalized coping tool combinations
-
-**Condition-Specific Recommendations:**
-* UI provides suggestions for appropriate coping tools based on current mental health status
-* Critical condition levels trigger recommendations for crisis resources
-* Seasonal recommendations (e.g., light therapy for winter depression)
-* Progress tracking shows which tools are most effective for individual characters
-
----
-
 ### **Implementation Architecture:**
 
-**File Structure:**
+**Organized File Structure:**
 ```
 MentalHealthMod/
+├── mod.info                                    # Mod metadata
+├── poster.png                                  # Mod thumbnail
 ├── media/
 │   ├── lua/
 │   │   ├── client/
-│   │   │   ├── ISMentalHealthPanel.lua         # UI panel implementation
-│   │   │   └── ISHealthPanelMod.lua            # Health panel integration
+│   │   │   └── ScottysMentalHealthExpansion/
+│   │   │       ├── ISMentalHealthPanel.lua     # Main UI panel
+│   │   │       ├── ISHealthPanelMod.lua        # Health panel integration
+│   │   │       ├── MoodTrackingUI.lua          # Mood tracking interface
+│   │   │       └── HallucinationEffects.lua    # Visual/audio effects
 │   │   ├── shared/
-│   │   │   └── MentalHealthSystem.lua          # Core system logic
-│   │   └── server/                             # Future multiplayer support
+│   │   │   └── ScottysMentalHealthExpansion/
+│   │   │       ├── Classes/
+│   │   │       │   ├── MentalHealthCondition.lua   # Base condition class
+│   │   │       │   ├── Medication.lua              # Base medication class
+│   │   │       │   └── TherapySession.lua          # Therapy session class
+│   │   │       ├── Libraries/
+│   │   │       │   ├── Json.lua                    # JSON handling library
+│   │   │       │   └── EventManager.lua           # Event management library
+│   │   │       ├── Config.lua                     # Shared configuration
+│   │   │       ├── Utils.lua                      # Utility functions
+│   │   │       ├── MentalHealthSystem.lua         # Core system logic
+│   │   │       ├── BipolarSystem.lua              # Bipolar-specific systems
+│   │   │       ├── HallucinationSystem.lua        # Hallucination management
+│   │   │       ├── MedicationSystem.lua           # Medication effects
+│   │   │       ├── CopingMechanisms.lua           # Therapy and coping tools
+│   │   │       └── ProfessionalSkills.lua         # Mental health professions
+│   │   └── server/
+│   │       └── ScottysMentalHealthExpansion/
+│   │           └── MultiplayerSync.lua            # Multiplayer synchronization
 │   ├── scripts/
-│   │   └── items/
-│   │       └── MentalMedications.txt           # Item definitions
-│   └── textures/                               # UI icons and graphics
-├── docs/
-│   ├── Mod Breakdown.md                        # This document
-│   ├── Task List - First Release.md            # Development roadmap
-│   └── User Guide.md                           # Player instructions
-├── mod.info                                    # Mod metadata
-└── README.md                                   # GitHub documentation
+│   │   ├── items/
+│   │   │   ├── MentalMedications.txt              # Psychiatric medications
+│   │   │   ├── SelfHelpResources.txt              # Books and therapy tools
+│   │   │   ├── ComfortItems.txt                   # Emotional support items
+│   │   │   └── ProfessionalEquipment.txt          # Professional tools
+│   │   ├── professions/
+│   │   │   └── MentalHealthProfessions.txt        # Therapist, psychiatrist, etc.
+│   │   └── traits/
+│   │       └── MentalHealthTraits.txt             # Starting mental conditions
+│   └── textures/
+│       ├── ui/
+│       │   ├── mental_health_icons/               # Condition severity icons
+│       │   └── mood_tracking/                     # Mood chart graphics
+│       └── items/
+│           ├── medications/                       # Pill bottle icons
+│           └── therapy_tools/                     # Journal, comfort item icons
 ```
 
 **Core System Architecture:**
