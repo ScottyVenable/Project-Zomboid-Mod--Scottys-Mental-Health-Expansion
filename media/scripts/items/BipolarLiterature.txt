@@ -8,7 +8,10 @@ module Base
         Weight = 0.6,
         Tooltip = "Comprehensive guide covering all aspects of bipolar management. Teaches mood tracking and episode recognition.",
         Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 120,
         Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readBipolarGuide,
     }
     
     item MoodTrackingWorkbook
@@ -35,8 +38,10 @@ module Base
         Icon = Book,
         CanBeRead = true,
         NumberOfPages = 80,
+        Tags = Literature;SelfHelp;Bipolar,
         OnRead = BipolarSystem.readDepressionGuide,
-}
+    }
+
     item ManiaManagementManual
     {
         DisplayName = "Mania Management Manual",
@@ -47,5 +52,120 @@ module Base
         CanBeRead = true,
         NumberOfPages = 60,
         Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readManiaGuide,
+    }
+    
+    // Bipolar-Specific Tools and Equipment
+    item MoodChart
+    {
+        DisplayName = "Mood Tracking Chart",
+        Type = Literature,
+        Weight = 0.2,
+        Tooltip = "Visual daily mood tracking tool (1-10 scale). Essential for episode prediction and prevention.",
+        Icon = Magazine,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 30,
+        PageToWrite = 30,
+        Tags = Bipolar;Tracking;Chart,
+        OnRead = BipolarSystem.useMoodChart,
+    }
+    
+    item SleepHygieneKit
+    {
+        DisplayName = "Sleep Hygiene Kit",
+        Type = Normal,
+        Weight = 0.5,
+        Tooltip = "Specialized tools for maintaining regular sleep schedule. Critical for bipolar stability.",
+        Icon = Bag_SchoolBag,
+        Tags = Bipolar;Sleep;Kit,
+        OnUse = BipolarSystem.useSleepKit,
+    }
+    
+    item BipolarCrisisBox
+    {
+        DisplayName = "Crisis Box for Mania",
+        Type = Container,
+        Weight = 1.0,
+        Capacity = 8,
+        Tooltip = "Emergency kit for manic episodes. Contains grounding tools and decision-limiting resources.",
+        Icon = FirstAidKit,
+        Tags = Bipolar;Crisis;Container,
+        OnUse = BipolarSystem.useCrisisBox,
+    }
+    
+    item LightTherapyLamp
+    {
+        DisplayName = "Light Therapy Lamp",
+        Type = Normal,
+        Weight = 2.0,
+        Tooltip = "Bright light device for seasonal mood regulation. Must be used correctly to avoid triggering mania.",
+        Icon = FlashlightLarge,
+        RequiresElectricity = true,
+        UseDelta = 0.001,
+        Tags = Bipolar;Light;Therapy;Electric,
+        OnUse = BipolarSystem.useLightTherapy,
+    }
+    
+    // IPSRT and Specialized Therapy Resources
+    item IPSRTWorkbook
+    {
+        DisplayName = "Interpersonal and Social Rhythm Therapy Workbook",
+        Type = Literature,
+        Weight = 0.6,
+        Tooltip = "Specialized therapy manual focusing on routine regulation and social relationships. Most effective long-term therapy for bipolar disorder.",
+        Icon = Book,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 35,
+        PageToWrite = 35,
+        Tags = Literature;Therapy;Bipolar;IPSRT,
+        OnRead = BipolarSystem.readIPSRTWorkbook,
+    }
+    
+    item BipolarCBTWorkbook
+    {
+        DisplayName = "Cognitive Behavioral Therapy for Bipolar Workbook",
+        Type = Literature,
+        Weight = 0.7,
+        Tooltip = "Modified CBT specifically for mood episodes. Addresses both manic and depressive thought patterns.",
+        Icon = Book,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 40,
+        PageToWrite = 40,
+        Tags = Literature;Therapy;Bipolar;CBT,
+        OnRead = BipolarSystem.readBipolarCBT,
+    }
+    
+    item WRAPKit
+    {
+        DisplayName = "Wellness Recovery Action Plan (WRAP) Kit",
+        Type = Literature,
+        Weight = 0.8,
+        Tooltip = "Comprehensive self-management system including daily maintenance plan, trigger identification, and crisis planning.",
+        Icon = Book,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 50,
+        PageToWrite = 50,
+        Tags = Literature;Recovery;Bipolar;WRAP,
+        OnRead = BipolarSystem.useWRAPKit,
+    }
+    
+    // Advanced Directive and Planning Tools
+    item MentalHealthDirective
+    {
+        DisplayName = "Advance Directive for Mental Health",
+        Type = Literature,
+        Weight = 0.2,
+        Tooltip = "Pre-planned instructions for severe episodes. Specifies preferred treatments and intervention triggers.",
+        Icon = Magazine,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 10,
+        PageToWrite = 10,
+        Tags = Legal;Mental;Planning;Bipolar,
+        OnRead = BipolarSystem.createAdvanceDirective,
     }
 }
