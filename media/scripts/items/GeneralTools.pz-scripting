@@ -1,0 +1,24 @@
+module Base 
+{
+    item LightTherapyLamp
+    {
+        DisplayName = "Light Therapy Lamp",
+        Type = Normal,
+        Weight = 2.0,
+        Tooltip = "Bright light device for seasonal mood regulation. Must be used correctly to avoid triggering mania.",
+        Icon = FlashlightLarge,
+        Tags = Bipolar;Light;Therapy,
+        OnUse = BipolarSystem.useLightTherapy,
+    }
+
+    item SleepHygieneKit
+    {
+        DisplayName = "Sleep Hygiene Kit",
+        Type = Normal,
+        Weight = 0.5,
+        Tooltip = "Specialized tools for maintaining regular sleep schedule. Critical for bipolar stability.",
+        Icon = Bag_SchoolBag,
+        Tags = Bipolar;Sleep,
+        OnUse = BipolarSystem.useSleepKit,
+    }
+}

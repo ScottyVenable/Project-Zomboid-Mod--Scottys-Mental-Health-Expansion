@@ -82,62 +82,115 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
 * **Progression:** Stress-related buildup with behavioral reinforcement
 * **Real-world inspiration:** Obsessive-Compulsive Disorder
 
+**7. Bipolar Disorder (0-100% Severity with Mood State Tracking)**
+* **Subtypes:**
+  - **Bipolar I Disorder:** Severe manic episodes with major depressive episodes
+  - **Bipolar II Disorder:** Hypomanic episodes with major depressive episodes  
+  - **Bipolar I with Psychotic Features:** Manic episodes including hallucinations/delusions
+
+* **Mood States:**
+  - **Depressive Episodes (0-100% severity):**
+    - Triggers: Stress, sleep deprivation, seasonal changes, medication non-compliance
+    - Symptoms: Severe fatigue, hopelessness, psychomotor retardation, suicidal ideation
+    - Duration: 2+ weeks in-game, gradual onset and recovery
+    - Effects: Massive XP penalties, movement speed reduction, social withdrawal
+
+  - **Manic Episodes (0-100% severity):**
+    - Triggers: Sleep deprivation, stimulants, high stress, substance use
+    - Symptoms: Decreased need for sleep, grandiosity, hyperactivity, poor judgment
+    - Duration: 1+ weeks in-game, rapid onset possible
+    - Effects: Reduced sleep requirements but increased recklessness, hyperfocus on activities
+
+  - **Hypomanic Episodes (0-60% severity - Bipolar II only):**
+    - Milder version of mania, less impairment
+    - Increased productivity and confidence
+    - May feel beneficial initially but leads to burnout
+    - Effects: Temporary skill bonuses but increased anxiety when episode ends
+
+  - **Mixed Episodes:**
+    - Simultaneous manic and depressive symptoms
+    - Extremely dangerous state with high agitation
+    - Increased risk of panic attacks and poor decisions
+    - Most challenging state to manage
+
+* **Mood Cycling Patterns:**
+  - **Rapid Cycling:** 4+ mood episodes per in-game year
+  - **Ultra-rapid Cycling:** Mood changes within days/weeks
+  - **Ultradian Cycling:** Multiple mood shifts within 24 hours (severe cases)
+  - **Seasonal Patterns:** Depression in winter, mania/hypomania in spring/summer
+
+* **Specific Symptoms by Episode Type:**
+  **Depressive Episode Symptoms:**
+  - Severe fatigue and psychomotor retardation
+  - Concentration difficulties (skill learning penalties)
+  - Appetite changes (either increased or decreased hunger)
+  - Sleep disturbances (hypersomnia or insomnia)
+  - Feelings of worthlessness and guilt
+  - Suicidal ideation in severe cases
+
+  **Manic Episode Symptoms:**
+  - Decreased sleep need (2-3 hours vs normal 6-8)
+  - Grandiose beliefs and inflated self-esteem
+  - Pressured speech and racing thoughts
+  - Distractibility and attention problems
+  - Increased goal-directed activity (hyperfocus on tasks)
+  - Risky behavior and poor judgment
+  - Irritability when interrupted or challenged
+
+  **Hypomanic Episode Symptoms:**
+  - Elevated mood and increased energy
+  - Decreased sleep need (4-5 hours)
+  - Increased creativity and productivity
+  - More talkative and social
+  - Mild increase in risky behavior
+  - Generally functional but noticeable changes
+
+  **Psychotic Features (Bipolar I only):**
+  - Auditory hallucinations during severe manic episodes
+  - Grandiose or paranoid delusions
+  - Disorganized thinking and speech
+  - Complete loss of insight during acute episodes
+  - May believe they have special powers or missions
+
+* **Triggers and Risk Factors:**
+  - **Sleep Disruption:** Most reliable trigger for mood episodes
+  - **Stress:** Major life events, trauma, ongoing pressure
+  - **Substance Use:** Alcohol, stimulants, depressants
+  - **Medication Changes:** Starting, stopping, or changing mood stabilizers
+  - **Seasonal Changes:** Light exposure, temperature variations
+  - **Hormonal Changes:** Planned future feature for realistic cycles
+
+* **Progression and Patterns:**
+  - **Early Stage:** Longer periods of stability between episodes
+  - **Established Pattern:** More frequent episodes, clearer triggers
+  - **Advanced/Untreated:** Rapid cycling, mixed episodes, cognitive decline
+  - **With Treatment:** Longer periods of stability, milder episodes
+* **Real-world inspiration:** DSM-5 Bipolar and Related Disorders, clinical research on mood cycling
+
 ---
 
-### **Advanced Trigger System:**
+### **Enhanced Trigger System:**
 
-**Environmental Triggers:**
-* Weather conditions (rain = +depression, storms = +anxiety)
-* Time of day (nighttime = +anxiety if outdoors)
-* Location safety (barricaded vs. exposed areas)
-* Lighting conditions (darkness = +anxiety, +insomnia)
-* Temperature extremes (discomfort = +anxiety, +depression)
+**Bipolar-Specific Triggers:**
+* **Sleep Pattern Disruption:** Most critical trigger
+  - Missing sleep for 2+ nights triggers mania/hypomania
+  - Oversleeping for extended periods triggers depression
+  - Irregular sleep schedules increase overall instability
 
-**Social Triggers:**
-* Time since last human interaction (loneliness accumulation)
-* Multiplayer: Positive interactions reduce depression/anxiety
-* NPC interactions (planned for future NPC mod compatibility)
-* Finding personal items (photos, letters = emotional triggers)
+* **Circadian Rhythm Disruption:**
+  - Staying awake through dawn (circadian trigger)
+  - Artificial light exposure during night hours
+  - Seasonal light changes affecting mood regulation
 
-**Physical Health Triggers:**
-* Pain levels affect anxiety and depression
-* Malnutrition compounds all mental health issues
-* Infection/illness increases anxiety and depression
-* Exhaustion lowers resilience to all triggers
+* **Stimulant Exposure:**
+  - Coffee, energy drinks, amphetamines trigger mania
+  - Cumulative effect with multiple stimulant uses
+  - Withdrawal from stimulants can trigger depression
 
-**Behavioral Triggers:**
-* Alcohol consumption (temporary anxiety relief, long-term depression increase)
-* Drug use effects (amphetamines = +anxiety, depressants = variable effects)
-* Violence exposure (killing zombies accumulates PTSD)
-* Self-care activities (washing, eating well = minor improvements)
-
----
-
-### **Comprehensive Symptom System:**
-
-**Physical Manifestations:**
-* Fatigue accumulation rates modified by depression/insomnia
-* Panic threshold adjustments based on anxiety levels
-* Movement speed penalties during severe episodes
-* Hand tremor effects during anxiety/panic (planned visual effect)
-
-**Cognitive Effects:**
-* Concentration difficulties (planned: skill learning penalties)
-* Memory issues (planned: map fog increase during psychosis)
-* Decision-making impacts (planned: delayed action responses)
-* Attention problems (planned: reduced hearing radius during depression)
-
-**Behavioral Changes:**
-* Sleep pattern disruptions (insomnia effects)
-* Social withdrawal (planned: NPC interaction penalties)
-* Risk-taking behaviors (planned: safety assessment modifications)
-* Compulsive actions (OCD manifestations)
-
-**Emotional Responses:**
-* Mood state indicators in UI
-* Emotional volatility (rapid mood changes during mixed episodes)
-* Emotional numbing (planned: reduced positive moodle effectiveness)
-* Heightened emotional sensitivity (increased negative moodle impact)
+* **High-Stress Achievement:**
+  - Completing major goals or reaching milestones
+  - Success paradoxically triggering manic episodes
+  - Pressure to maintain high performance levels
 
 ---
 
@@ -176,11 +229,47 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
 * **Onset:** 1-2 hours for acute effects
 * **Real-world inspiration:** Risperidone, Olanzapine, Quetiapine
 
-**Medication Interactions:**
-* Combining medications has additive sedative effects
-* Overdose protection prevents dangerous combinations
-* Tolerance development (planned: reduced effectiveness over time)
-* Withdrawal symptoms when stopping abruptly (planned)
+**Lithizone (Lithium-class Mood Stabilizer)**
+* **Primary Effect:** Prevents and reduces severity of manic and depressive episodes
+* **Mechanism:** Stabilizes mood cycling, reduces episode frequency
+* **Dosage Requirements:**
+  - Requires regular dosing every 12 hours
+  - Blood level simulation (therapeutic window)
+  - Too little = ineffective, too much = toxicity
+* **Side Effects:**
+  - Increased thirst and urination
+  - Hand tremor and coordination issues
+  - Weight gain and sluggishness
+  - Potential kidney problems with long-term use
+* **Monitoring Required:** Regular "blood tests" to maintain therapeutic levels
+* **Real-world inspiration:** Lithium carbonate
+
+**Valprex (Anticonvulsant Mood Stabilizer)**
+* **Primary Effect:** Particularly effective for mixed episodes and rapid cycling
+* **Secondary Effects:** Also helps with anxiety and agitation
+* **Side Effects:**
+  - Drowsiness and fatigue
+  - Weight gain and increased appetite
+  - Hair loss (cosmetic penalty)
+  - Cognitive dulling (slight skill penalties)
+* **Advantages:** More tolerable than lithium, broader spectrum
+* **Real-world inspiration:** Valproic acid (Depakote)
+
+**Lamotrigex (Anti-seizure Mood Stabilizer)**
+* **Primary Effect:** Excellent for bipolar depression, prevents depressive episodes
+* **Special Property:** Less effective for mania, often combined with other medications
+* **Side Effects:**
+  - Potentially serious skin reactions (rare but dangerous)
+  - Insomnia and headaches
+  - Dizziness and coordination problems
+* **Titration Required:** Must start with low dose and increase gradually
+* **Real-world inspiration:** Lamotrigine (Lamictal)
+
+**Medication Combinations for Bipolar:**
+* **Dual Therapy:** Two mood stabilizers for better coverage
+* **Adjunct Antipsychotics:** Added during acute manic episodes
+* **Antidepressant Caution:** Can trigger mania if used without mood stabilizer
+* **Polypharmacy Management:** Complex interactions and side effect profiles
 
 ---
 
@@ -228,6 +317,34 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
   - Most effective self-help resource with 8-12 point reductions
   - Unlocks "Thought Challenge" system for cognitive restructuring
   - Requires pen/pencil and paper for maximum effectiveness
+
+* **"Living with Bipolar Disorder" Book:**
+  - Comprehensive 30-page guide covering all aspects of bipolar management
+  - Mood tracking techniques and episode recognition
+  - Reduces mood episode severity by 15-20%
+  - Unlocks "Mood Monitoring" and "Episode Planning" actions
+  - Teaches early warning sign recognition
+
+* **"Bipolar Mood Tracking Workbook":**
+  - Specialized 25-page workbook for daily mood monitoring
+  - Charts mood, sleep, medications, and triggers
+  - Essential tool for pattern recognition and episode prediction
+  - Enables "Mood Graph" feature in UI showing mood trends
+  - Helps identify personal trigger patterns
+
+* **"Managing Bipolar Depression" Book:**
+  - 20-page focused guide for depressive episodes
+  - Behavioral activation specifically for bipolar depression
+  - Cognitive strategies for mood-related thoughts
+  - Reduces depressive episode severity by 10-15%
+  - Unlocks "Depression Action Plan" for episode management
+
+* **"Mania Management Manual":**
+  - 15-page emergency guide for manic episodes
+  - Techniques for self-monitoring and damage control
+  - Sleep hygiene and stimulation reduction strategies
+  - Reduces manic episode severity and duration
+  - Unlocks "Mania Safety Plan" action
 
 **Advanced Journal Therapy System:**
 * **Basic Therapy Journal:** 
@@ -514,6 +631,31 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
 * **Medication Compliance Tracker**
 * **Crisis Contact Information**
 
+**Bipolar-Specific Tools:**
+* **Mood Tracking Chart:**
+  - Visual daily mood tracking tool (1-10 scale)
+  - Tracks sleep hours, medication compliance, triggers
+  - Creates patterns visible to player for self-awareness
+  - Essential for episode prediction and prevention
+
+* **Sleep Hygiene Kit:**
+  - Specialized tools for maintaining regular sleep schedule
+  - Sleep mask, earplugs, caffeine-limiting reminders
+  - Critical for bipolar stability and episode prevention
+  - Unlocks "Sleep Schedule Maintenance" routine
+
+* **Crisis Box for Mania:**
+  - Emergency kit for manic episodes
+  - Contains grounding tools, emergency contacts, reality checks
+  - Includes financial safeguards and decision-limiting tools
+  - Used when mania severity reaches dangerous levels
+
+* **Light Therapy Lamp:**
+  - Bright light device for seasonal mood regulation
+  - Helps with seasonal patterns and circadian rhythm
+  - Must be used correctly (timing and duration matter)
+  - Can trigger mania if overused
+
 ---
 
 ### **Enhanced Item Integration System:**
@@ -523,6 +665,12 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
 * Reading self-help books while holding comfort items enhances benefits
 * Combining aromatherapy with meditation doubles relaxation effects
 * Writing in journals after reading relevant self-help books provides enhanced processing
+
+**Bipolar-Specific Item Synergies:**
+* **Mood Stabilizer + Mood Tracking Chart:** Enhanced stability and episode prediction
+* **Sleep Hygiene Kit + Light Therapy:** Optimal circadian rhythm regulation
+* **Crisis Box + WRAP Kit:** Comprehensive emergency preparedness
+* **Multiple Self-Help Books:** Builds "Bipolar Expertise" skill for better self-management
 
 **Skill Development:**
 * Regular use of coping mechanisms builds "Mental Health Literacy" skill

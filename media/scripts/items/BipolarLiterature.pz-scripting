@@ -1,0 +1,56 @@
+module Base
+{    // Bipolar-Specific Self-Help Resources
+    item BipolarDisorderGuide
+    {
+        DisplayName = "Living with Bipolar Disorder",
+        Type = Literature,
+        Weight = 0.6,
+        Tooltip = "Comprehensive guide covering all aspects of bipolar management. Teaches mood tracking and episode recognition.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 120,
+        Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readBipolarGuide,
+    }
+    
+    item MoodTrackingWorkbook
+    {
+        DisplayName = "Bipolar Mood Tracking Workbook",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Essential tool for daily mood monitoring and pattern recognition. Enables mood graph feature.",
+        Icon = Book,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 25,
+        PageToWrite = 25,
+        Tags = Literature;Workbook;Bipolar,
+        OnRead = BipolarSystem.useMoodTracking,
+    }
+    
+    item BipolarDepressionBook
+    {
+        DisplayName = "Managing Bipolar Depression",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Focused guide for depressive episodes with bipolar-specific behavioral activation techniques.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 80,
+        Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readDepressionGuide,
+    }
+    
+    item ManiaManagementManual
+    {
+        DisplayName = "Mania Management Manual",
+        Type = Literature,
+        Weight = 0.3,
+        Tooltip = "Emergency guide for manic episodes. Self-monitoring and damage control techniques.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 60,
+        Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readManiaGuide,
+    }
+}

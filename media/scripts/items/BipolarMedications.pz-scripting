@@ -1,0 +1,119 @@
+module Base
+{
+    // Mood Stabilizer Medications
+    item Lithizone
+    {
+        DisplayName = Lithizone (Lithium),
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.05,
+        Tooltip = "Mood stabilizer for bipolar disorder. Requires regular dosing and blood level monitoring. Side effects: tremor, thirst.",
+        Icon = Pills,
+        Tags = Drug;MoodStabilizer,
+        OnEat = BipolarSystem.takeLithizone,
+    }
+    
+    item Valprex
+    {
+        DisplayName = Valprex,
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.08,
+        Tooltip = "Anticonvulsant mood stabilizer. Particularly effective for mixed episodes and rapid cycling. Side effects: weight gain, drowsiness.",
+        Icon = Pills,
+        Tags = Drug;MoodStabilizer,
+        OnEat = BipolarSystem.takeValprex,
+    }
+    
+    item Lamotrigex
+    {
+        DisplayName = Lamotrigex,
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.06,
+        Tooltip = "Anti-seizure mood stabilizer. Excellent for bipolar depression prevention. Caution: potentially serious skin reactions.",
+        Icon = Pills,
+        Tags = Drug;MoodStabilizer,
+        OnEat = BipolarSystem.takeLamotrigex,
+    }
+    
+    // Bipolar-Specific Self-Help Resources
+    item BipolarDisorderGuide
+    {
+        DisplayName = "Living with Bipolar Disorder",
+        Type = Literature,
+        Weight = 0.6,
+        Tooltip = "Comprehensive guide covering all aspects of bipolar management. Teaches mood tracking and episode recognition.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 120,
+        Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readBipolarGuide,
+    }
+    
+    item MoodTrackingWorkbook
+    {
+        DisplayName = "Bipolar Mood Tracking Workbook",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Essential tool for daily mood monitoring and pattern recognition. Enables mood graph feature.",
+        Icon = Book,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 25,
+        PageToWrite = 25,
+        Tags = Literature;Workbook;Bipolar,
+        OnRead = BipolarSystem.useMoodTracking,
+    }
+    
+    item BipolarDepressionBook
+    {
+        DisplayName = "Managing Bipolar Depression",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Focused guide for depressive episodes with bipolar-specific behavioral activation techniques.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 80,
+        Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readDepressionGuide,
+    }
+    
+    item ManiaManagementManual
+    {
+        DisplayName = "Mania Management Manual",
+        Type = Literature,
+        Weight = 0.3,
+        Tooltip = "Emergency guide for manic episodes. Self-monitoring and damage control techniques.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 60,
+        Tags = Literature;SelfHelp;Bipolar,
+        OnRead = BipolarSystem.readManiaGuide,
+    }
+    
+    // Specialized Tools
+    item MoodChart
+    {
+        DisplayName = "Mood Tracking Chart",
+        Type = Literature,
+        Weight = 0.2,
+        Tooltip = "Visual daily mood tracking tool (1-10 scale). Essential for episode prediction and prevention.",
+        Icon = Magazine,
+        Tags = Bipolar;Tracking,
+        OnUse = BipolarSystem.useMoodChart,
+    }
+    
+    item BipolarCrisisBox
+    {
+        DisplayName = "Crisis Box for Mania",
+        Type = Container,
+        Weight = 1.0,
+        Capacity = 8,
+        Tooltip = "Emergency kit for manic episodes. Contains grounding tools and decision-limiting resources.",
+        Icon = FirstAidKit,
+        Tags = Bipolar;Crisis,
+        OnUse = BipolarSystem.useCrisisBox,
+    }
+
+}
