@@ -264,140 +264,68 @@ end
 
 -- Trigger hallucination
 function MentalHealthSystem.triggerHallucination(player, mh)
-    
-    if ZombRand(3) == 0 then
-        -- Audio hallucination (more realistic to psychosis)
-        
-        -- Play a subtle, ambiguous sound (not always obvious or dramatic)
-        local subtleSounds = {
-            "MuffledVoices", -- soft, unintelligible voices
-            "IndistinctWhisper", -- faint whispering
-            "FaintKnock", -- gentle knocking
-            "SoftFootsteps", -- footsteps in another room
-            "DistantCrying", -- crying far away
-            "RadioStatic", -- static or radio tuning
-            "EchoedName", -- faint echo of player's name
+    -- Decide which type of hallucination occurs
+    -- 0-64 = auditory, 65-94 = visual, 95+ = tactile
+    local roll = ZombRand(100)
+
+    if roll < 65 then
+        -------------------------------------------------
+        -- AUDITORY HALLUCINATION -----------------------
+        -------------------------------------------------
+        -- Play a random unsettling sound around the player
+        local sounds = {
+            "DoorCreak", "WindowRattle", "ZombieSnarl",
+            "MuffledVoices", "IndistinctWhisper"
         }
-        local chosenSound = subtleSounds[ZombRand(#subtleSounds) + 1]
-        player:playSound(chosenSound)
+        player:playSound(sounds[ZombRand(#sounds) + 1])
 
-        -- More realistic internal responses (not always verbalized, sometimes confusion or checking)
-        local response_audio_mild = {
-            "Did I hear something?",
-            "Maybe it's just my imagination.",
-            "That was odd...",
-            "I must be tired.",
-            "Was that a voice?",
-            "I think I heard something.",
-            "Is someone there?",
-            "It's so quiet... or is it?"
+        -- Whispered internal dialogue
+        local lines = {
+            "Did you hear that?",
+            "Someone's out there...",
+            "The voices are back...",
+            "It sounded so real..."
         }
-        local response_audio_mod = {
-            "Who's there?",
-            "I keep hearing things...",
-            "Am I being followed?",
-            "That sounded close.",
-            "Something's not right.",
-            "Whispering... I hear whispering.",
-            "Why won't it stop?",
-            "Did someone call my name?"
+        player:Say(lines[ZombRand(#lines) + 1])
+
+        -- Slight stress increase from the experience
+        mh.anxiety = math.min(100, mh.anxiety + 0.5)
+
+    elseif roll < 95 then
+        -------------------------------------------------
+        -- VISUAL HALLUCINATION -------------------------
+        -------------------------------------------------
+        -- Simple text cue describing what the player thinks they saw
+        local visions = {
+            "A shadow just moved...",
+            "I swear I saw a zombie there...",
+            "Was that a figure in the corner?",
+            "Something isn't right with my eyes..."
         }
-        local response_audio_severe = {
-            "They're talking about me.",
-            "Why won't the voices stop?",
-            "I can't trust what I hear.",
-            "Are they real?",
-            "They're inside my head.",
-            "I can't take this anymore.",
-            "Please, leave me alone.",
-            "I know they're here."
-        }
+        player:Say(visions[ZombRand(#visions) + 1])
 
-        -- Choose response based on psychosis level
-        local sayText = ""
-        if mh.psychosis < 50 then
-            sayText = response_audio_mild[ZombRand(#response_audio_mild) + 1]
-        elseif mh.psychosis < 80 then
-            sayText = response_audio_mod[ZombRand(#response_audio_mod) + 1]
-        else
-            sayText = response_audio_severe[ZombRand(#response_audio_severe) + 1]
-        end
+        -- Brief noise to draw attention, simulating a visual cue
+        addSound(player, player:getX(), player:getY(), player:getZ(), 10, 10)
 
-        -- Player sometimes only thinks (not always says out loud)
-        if ZombRand(100) < 60 then
-            player:Say(sayText)
-        end
-
-        -- Occasionally play a random ambiguous in-game sound to simulate misperception
-        if ZombRand(100) < 20 then
-            local ambiguousSounds = {
-                "DoorCreak",
-                "WindowRattle",
-                "WindHowl",
-                "FloorboardCreak",
-                "DistantDogBark"
-            }
-            player:playSound(ambiguousSounds[ZombRand(#ambiguousSounds) + 1])
-        end
-
-        -- Less frequent shouting; more likely to freeze or whisper
-        if mh.psychosis > 80 and ZombRand(100) < 20 then
-            player:getEmitter():playSound("PlayerWhisper")
-            player:Say("Shh... did you hear that?")
-        end
-
-        -- Increase psychosis slightly after a severe hallucination
-        if mh.psychosis > 80 then
-            mh.psychosis = math.min(100, mh.psychosis + 1)
-            mh.anxiety = math.min(100, mh.anxiety + 1)
-        end
-
-        -- Chance to trigger panic or stress, but not always
-        if mh.psychosis > 60 and ZombRand(100) < 10 then
-            player:getStats():setPanic(math.min(100, player:getStats():getPanic() + 5))
-            player:getStats():setStress(math.min(1.0, player:getStats():getStress() + 0.05))
-        end
-
-        return
-    if ZombRand(3) == 1 then
-        local visualHallucinationType = {
-            "shadow", "figure", "creature", "zombie", "car"
-        }
-        -- Pick a random visual hallucination
-        if ZombRand(2) == 0 then
-            -- Visual hallucination of yourself dead on the ground
-            local deadSprite = player:getSprite() -- Get the model of the player and have it appear dead on the ground
-            deadSprite:setFrame(0) -- Set to the dead frame
-            local deadObj = IsoObject.new(player:getCell(), x, y, z)
-            deadObj:setSprite(deadSprite)
-            player:getCell():addToProcess(deadObj)
-            player:Say("Is that me? Am I dead?")
-        else
-            player:Say("Did you see that?!")
-        end
-        -- Visual hallucination
-        local x, y, z = player:getX(), player:getY(), player:getZ()
-        local sprite = visualHallucinationType[ZombRand(#visualHallucinationType) + 1]
-        local obj = IsoObject.new(player:getCell(), x, y, z)
-        obj:setSprite(sprite)
-        player:getCell():addToProcess(obj)
-        player:Say("What was that?!")
-
+        mh.psychosis = math.min(100, mh.psychosis + 0.5)
 
     else
-        -- Text hallucination based on psychosis level
-        mh.psychosis = math.min(100, mh.psychosis + 1) -- Increase psychosis level by 1
-        local hallucinations = {
-            "Did you hear that?",
-            "Something moved in the shadows...",
-            "They're watching me.",
-            "I swear I saw someone.",
-            ""
+        -------------------------------------------------
+        -- TACTILE HALLUCINATION (RARE) -----------------
+        -------------------------------------------------
+        -- Player feels something on their skin
+        local sensations = {
+            "Something is crawling on me...",
+            "I feel bugs under my clothes...",
+            "Did something just touch me?"
         }
-        player:Say(hallucinations[ZombRand(#hallucinations) + 1])
+        player:Say(sensations[ZombRand(#sensations) + 1])
+
+        -- Increase panic slightly because of the disturbing feeling
+        player:getStats():setPanic(math.min(100, player:getStats():getPanic() + 5))
+        mh.psychosis = math.min(100, mh.psychosis + 1)
     end
 end
-
 -- Medication taking functions
 function MentalHealthSystem.takeSerizon(player)
     local mh = player:getModData().MentalHealth
