@@ -20,7 +20,6 @@ end
 
 -- Ensure mental health system is initialized when health panel is created
 Events.OnCreatePlayer.Add(function(playerNum, player)
-    -- Initialize mental health data if it doesn't exist
     if MentalHealthSystem then
         MentalHealthSystem.initPlayer(player)
     end
@@ -35,10 +34,4 @@ function ISHealthWindow:new(x, y, character)
     return o
 end
 
--- Ensure mental health system is initialized when health panel is created
-Events.OnCreatePlayer.Add(function(playerNum, player)
-    -- Initialize mental health data if it doesn't exist
-    if MentalHealthSystem then
-        MentalHealthSystem.initPlayer(player)
-    end
-end)
+-- Duplicate listener removed

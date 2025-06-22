@@ -18,11 +18,12 @@ module Base
         Weight = 0.4,
         Tooltip = "Essential tool for daily mood monitoring and pattern recognition. Enables mood graph feature.",
         Icon = Book,
-        CanBe = true,
+        CanBeRead = true,
         CanBeWrite = true,
+        NumberOfPages = 25,
         PageToWrite = 25,
         Tags = Literature;Workbook;Bipolar,
-        Tags = Literature;Workbook;Bipolar,
+        OnRead = BipolarSystem.useMoodTracking,
     }
     
     item BipolarDepressionBook
@@ -35,7 +36,6 @@ module Base
         CanBeRead = true,
         NumberOfPages = 80,
         OnRead = BipolarSystem.readDepressionGuide,
-        NumberOfPages = 80,
 }
     item ManiaManagementManual
     {
