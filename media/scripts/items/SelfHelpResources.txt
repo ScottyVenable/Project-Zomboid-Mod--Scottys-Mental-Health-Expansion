@@ -141,7 +141,7 @@ module Base
         Type = Normal,
         Weight = 0.1,
         Tooltip = "Portable stress relief tool. Squeeze to immediately reduce anxiety and restless energy.",
-        Icon = TennislBall,
+        Icon = TennisBall,
         Tags = Comfort;Anxiety,
         OnUse = MentalHealthSystem.useStressBall,
     }

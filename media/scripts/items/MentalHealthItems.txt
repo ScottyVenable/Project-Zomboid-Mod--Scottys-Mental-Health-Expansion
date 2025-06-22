@@ -58,7 +58,7 @@ module Base
         DisplayName = "Teddy Bear",
         Type = Normal,
         Weight = 0.5,
-        Icon = TennislBall,
+        Icon = TennisBall,
         Tooltip = "A soft comfort object. Provides emotional support and reduces anxiety.",
         Tags = Comfort;Mental,
     }
