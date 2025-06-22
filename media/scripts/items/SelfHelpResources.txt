@@ -1,0 +1,370 @@
+module Base
+{
+    // Self-Help Books
+    item ManagingAnxietyBook
+    {
+        DisplayName = "Managing Anxiety in Crisis",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "A practical guide to managing anxiety with breathing exercises and grounding techniques. Unlocks 'Deep Breathing' action.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 10,
+        Tags = Literature;SelfHelp,
+        OnRead = MentalHealthSystem.readAnxietyBook,
+    }
+    
+    item DepressionSurvivalGuide
+    {
+        DisplayName = "Depression: A Survivor's Guide",
+        Type = Literature,
+        Weight = 0.5,
+        Tooltip = "Comprehensive guide to understanding and managing depression through behavioral activation and cognitive techniques.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 15,
+        Tags = Literature;SelfHelp,
+        OnRead = MentalHealthSystem.readDepressionBook,
+    }
+    
+    item TraumaRecoveryWorkbook
+    {
+        DisplayName = "Trauma Recovery Workbook",
+        Type = Literature,
+        Weight = 0.6,
+        Tooltip = "Interactive workbook for PTSD and trauma processing with grounding techniques and exposure exercises.",
+        Icon = Book,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 20,
+        PageToWrite = 20,
+        Tags = Literature;SelfHelp;Workbook,
+        OnRead = MentalHealthSystem.readTraumaWorkbook,
+    }
+    
+    item SleepHygieneHandbook
+    {
+        DisplayName = "Sleep Hygiene Handbook",
+        Type = Literature,
+        Weight = 0.3,
+        Tooltip = "Practical manual for improving sleep quality and combating insomnia. Unlocks 'Sleep Ritual' action.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 8,
+        Tags = Literature;SelfHelp,
+        OnRead = MentalHealthSystem.readSleepBook,
+    }
+    
+    item MindfulnessForBeginners
+    {
+        DisplayName = "Mindfulness for Beginners",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Introduction to meditation and mindfulness practices. Enhances Rest & Reflect and unlocks Mindful Walking.",
+        Icon = Book,
+        CanBeRead = true,
+        NumberOfPages = 12,
+        Tags = Literature;SelfHelp;Meditation,
+        OnRead = MentalHealthSystem.readMindfulnessBook,
+    }
+    
+    item CBTWorkbook
+    {
+        DisplayName = "Cognitive Behavioral Therapy Workbook",
+        Type = Literature,
+        Weight = 0.7,
+        Tooltip = "Advanced self-therapy resource combining multiple CBT techniques. Most effective when used with pen and paper.",
+        Icon = Book,
+        CanBeRead = true,
+        CanBeWrite = true,
+        NumberOfPages = 25,
+        PageToWrite = 25,
+        Tags = Literature;SelfHelp;Professional,
+        OnRead = MentalHealthSystem.readCBTWorkbook,
+    }
+    
+    // Specialized Journals
+    item StructuredCBTJournal
+    {
+        DisplayName = "Structured CBT Journal",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Specialized journal with guided prompts and CBT exercises. Enhanced therapeutic benefits with mood tracking.",
+        Icon = Book,
+        CanBeWrite = true,
+        PageToWrite = 75,
+        Tags = Literature;Journal;Professional,
+        OnRead = MentalHealthSystem.useCBTJournal,
+    }
+    
+    item TraumaProcessingJournal
+    {
+        DisplayName = "Trauma Processing Journal",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Specialized journal for PTSD and trauma work with trauma-specific prompts and exercises.",
+        Icon = Book,
+        CanBeWrite = true,
+        PageToWrite = 60,
+        Tags = Literature;Journal;Trauma,
+        OnRead = MentalHealthSystem.useTraumaJournal,
+    }
+    
+    item GratitudeJournal
+    {
+        DisplayName = "Gratitude Journal",
+        Type = Literature,
+        Weight = 0.3,
+        Tooltip = "Focus on positive psychology and resilience building. Builds resilience against future mental health decline.",
+        Icon = Book,
+        CanBeWrite = true,
+        PageToWrite = 40,
+        Tags = Literature;Journal;Positive,
+        OnRead = MentalHealthSystem.useGratitudeJournal,
+    }
+    
+    // Comfort Items
+    item ComfortBlanket
+    {
+        DisplayName = "Comfort Blanket",
+        Type = Clothing,
+        Weight = 1.2,
+        Tooltip = "Weighted blanket providing deep pressure stimulation. Reduces anxiety and improves sleep quality.",
+        Icon = Bag_DuffelBag,
+        Tags = Comfort;Sleep,
+        OnUse = MentalHealthSystem.useComfortBlanket,
+    }
+    
+    item StressBall
+    {
+        DisplayName = "Stress Ball",
+        Type = Normal,
+        Weight = 0.1,
+        Tooltip = "Portable stress relief tool. Squeeze to immediately reduce anxiety and restless energy.",
+        Icon = TennislBall,
+        Tags = Comfort;Anxiety,
+        OnUse = MentalHealthSystem.useStressBall,
+    }
+    
+    item PersonalPhoto
+    {
+        DisplayName = "Personal Photo",
+        Type = Normal,
+        Weight = 0.05,
+        Tooltip = "Picture of loved ones or happy memories. Provides emotional connection and hope.",
+        Icon = Magazine,
+        Tags = Comfort;Memory,
+        OnUse = MentalHealthSystem.viewPhoto,
+    }
+    
+    item MemoryBox
+    {
+        DisplayName = "Memory Box",
+        Type = Container,
+        Weight = 0.8,
+        Capacity = 10,
+        Tooltip = "Container for storing meaningful personal items. Provides cumulative emotional benefits.",
+        Icon = Bag_SchoolBag,
+        Tags = Comfort;Storage,
+    }
+    
+    // Aromatherapy and Relaxation
+    item LavenderCandle
+    {
+        DisplayName = "Lavender Aromatherapy Candle",
+        Type = Normal,
+        Weight = 0.3,
+        Tooltip = "Scented candle with calming properties. Reduces anxiety and creates calm environment.",
+        Icon = Candle,
+        Tags = Aromatherapy;Anxiety,
+        OnUse = MentalHealthSystem.lightCandle,
+    }
+    
+    item VanillaCandle
+    {
+        DisplayName = "Vanilla Aromatherapy Candle",
+        Type = Normal,
+        Weight = 0.3,
+        Tooltip = "Scented candle with mood-lifting properties. Reduces depression and creates comfort.",
+        Icon = Candle,
+        Tags = Aromatherapy;Depression,
+        OnUse = MentalHealthSystem.lightCandle,
+    }
+    
+    item EssentialOilKit
+    {
+        DisplayName = "Essential Oil Kit",
+        Type = Normal,
+        Weight = 0.4,
+        Tooltip = "Collection of therapeutic essential oils. Various scents provide different mental health benefits.",
+        Icon = Pills,
+        Tags = Aromatherapy;Natural,
+        OnUse = MentalHealthSystem.useEssentialOils,
+    }
+    
+    // Creative Expression
+    item ArtTherapyKit
+    {
+        DisplayName = "Art Therapy Supplies",
+        Type = Normal,
+        Weight = 0.6,
+        Tooltip = "Colored pencils, crayons, and sketchpad for artistic expression. Creates artwork that provides ongoing benefits.",
+        Icon = Pencil,
+        Tags = Creative;Therapy,
+        OnUse = MentalHealthSystem.createArt,
+    }
+    
+    item PoetryJournal
+    {
+        DisplayName = "Poetry Journal",
+        Type = Literature,
+        Weight = 0.3,
+        Tooltip = "Specialized journal for creative writing and poetry. Alternative form of emotional expression.",
+        Icon = Book,
+        CanBeWrite = true,
+        PageToWrite = 50,
+        Tags = Literature;Creative,
+        OnRead = MentalHealthSystem.writePoetry,
+    }
+    
+    // Exercise and Physical Care
+    item YogaMat
+    {
+        DisplayName = "Yoga Mat",
+        Type = Normal,
+        Weight = 1.0,
+        Tooltip = "Exercise mat for yoga, stretching, and meditation. Supports physical activity and mindfulness practice.",
+        Icon = Tarp,
+        Tags = Exercise;Meditation,
+        OnUse = MentalHealthSystem.doYoga,
+    }
+    
+    item PersonalHygieneKit
+    {
+        DisplayName = "Personal Hygiene Kit",
+        Type = Normal,
+        Weight = 0.8,
+        Tooltip = "Comprehensive kit with soap, shampoo, and toiletries. Regular use provides mental health benefits.",
+        Icon = Bag_SchoolBag,
+        Tags = SelfCare;Hygiene,
+        OnUse = MentalHealthSystem.selfCare,
+    }
+    
+    // Crisis Management
+    item CrisisInterventionKit
+    {
+        DisplayName = "Crisis Intervention Kit",
+        Type = Normal,
+        Weight = 0.5,
+        Tooltip = "Collection of immediate coping tools for severe episodes. Ice pack, cards, and emergency resources.",
+        Icon = FirstAidKit,
+        Tags = Crisis;Emergency,
+        OnUse = MentalHealthSystem.useCrisisKit,
+    }
+    
+    item GroundingTechniqueCards
+    {
+        DisplayName = "Grounding Technique Cards",
+        Type = Literature,
+        Weight = 0.2,
+        Tooltip = "Quick reference cards for grounding exercises. Immediate anxiety and panic relief techniques.",
+        Icon = Magazine,
+        Tags = Crisis;Anxiety;Cards,
+        OnRead = MentalHealthSystem.useGroundingCards,
+    }
+    
+    // Natural Remedies
+    item ChamomileTea
+    {
+        DisplayName = "Chamomile Tea",
+        Type = Food,
+        Weight = 0.1,
+        HungerChange = -5,
+        ThirstChange = -15,
+        Tooltip = "Herbal tea with natural calming properties. Reduces anxiety and promotes better sleep.",
+        Icon = Teabag,
+        Tags = Natural;Anxiety;Sleep,
+        OnEat = MentalHealthSystem.drinkChamomileTea,
+    }
+    
+    item StJohnsWort
+    {
+        DisplayName = "St. John's Wort Supplement",
+        Type = Drug,
+        Weight = 0.1,
+        UseDelta = 0.1,
+        Tooltip = "Natural herbal supplement for mild depression. Gentle effects with minimal side effects.",
+        Icon = Pills,
+        Tags = Natural;Depression,
+        OnEat = MentalHealthSystem.takeStJohnsWort,
+    }
+    
+    // Technology-Based Coping
+    item MeditationApp
+    {
+        DisplayName = "Meditation App (on tablet)",
+        Type = Normal,
+        Weight = 0.3,
+        Tooltip = "Tablet with guided meditation sessions and mindfulness exercises. Requires battery power.",
+        Icon = Magazine,
+        Tags = Technology;Meditation,
+        OnUse = MentalHealthSystem.useMeditationApp,
+    }
+    
+    item BinauralBeatsAudio
+    {
+        DisplayName = "Binaural Beats Audio CD",
+        Type = Normal,
+        Weight = 0.1,
+        Tooltip = "Specialized audio for relaxation and focus. Different frequencies for various benefits. Requires headphones.",
+        Icon = CDplayer,
+        Tags = Technology;Audio;Relaxation,
+        OnUse = MentalHealthSystem.playBinauralBeats,
+    }
+    
+    // Professional Resources
+    item TherapySessionRecording
+    {
+        DisplayName = "Therapy Session Recording",
+        Type = Normal,
+        Weight = 0.2,
+        Tooltip = "Professional-quality guided therapy session on cassette. Structured therapeutic content.",
+        Icon = Cassette,
+        Tags = Professional;Audio,
+        OnUse = MentalHealthSystem.listenToTherapy,
+    }
+    
+    item MentalHealthAssessment
+    {
+        DisplayName = "Mental Health Assessment Tool",
+        Type = Literature,
+        Weight = 0.2,
+        Tooltip = "Self-assessment questionnaires for tracking progress. Provides objective measurement of mental health.",
+        Icon = Magazine,
+        Tags = Professional;Assessment,
+        OnRead = MentalHealthSystem.takeAssessment,
+    }
+    
+    // Group and Social Support
+    item SupportGroupGuide
+    {
+        DisplayName = "Support Group Facilitator Guide",
+        Type = Literature,
+        Weight = 0.4,
+        Tooltip = "Materials for facilitating mental health support groups. Enables structured peer support.",
+        Icon = Book,
+        Tags = Social;Group;Guide,
+        OnRead = MentalHealthSystem.facilitateGroup,
+    }
+    
+    item LetterWritingKit
+    {
+        DisplayName = "Letter Writing Kit",
+        Type = Normal,
+        Weight = 0.3,
+        Tooltip = "Paper, pens, and envelopes for correspondence. Write therapeutic letters to process emotions.",
+        Icon = Magazine,
+        Tags = Writing;Social,
+        OnUse = MentalHealthSystem.writeLetter,
+    }
+}
