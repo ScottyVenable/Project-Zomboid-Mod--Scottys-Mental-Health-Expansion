@@ -85,8 +85,9 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
 **7. Bipolar Disorder (0-100% Severity with Mood State Tracking)**
 * **Subtypes:**
   - **Bipolar I Disorder:** Severe manic episodes with major depressive episodes
-  - **Bipolar II Disorder:** Hypomanic episodes with major depressive episodes  
+  - **Bipolar II Disorder:** Hypomanic episodes with major depressive episodes
   - **Bipolar I with Psychotic Features:** Manic episodes including hallucinations/delusions
+  - **Character Traits:** Each subtype can be chosen during character creation as a negative trait (Bipolar I, Bipolar II, or Bipolar I - Psychotic)
 
 * **Mood States:**
   - **Depressive Episodes (0-100% severity):**
@@ -264,6 +265,7 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
   - Dizziness and coordination problems
 * **Titration Required:** Must start with low dose and increase gradually
 * **Real-world inspiration:** Lamotrigine (Lamictal)
+* **Game Implementation:** Side effects like thirst, fatigue, and insomnia occur when mood stabilizers are active
 
 **Medication Combinations for Bipolar:**
 * **Dual Therapy:** Two mood stabilizers for better coverage
@@ -330,6 +332,7 @@ This mod introduces comprehensive mental health realism to Project Zomboid by si
   - Charts mood, sleep, medications, and triggers
   - Essential tool for pattern recognition and episode prediction
   - Enables "Mood Graph" feature in UI showing mood trends
+  - Unlocks the Mood Tracking tab in the Health screen
   - Helps identify personal trigger patterns
 
 * **"Managing Bipolar Depression" Book:**

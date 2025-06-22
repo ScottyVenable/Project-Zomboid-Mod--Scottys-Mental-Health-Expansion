@@ -123,9 +123,18 @@ function ISMentalHealthPanel:render()
     r, g, b = self:getSeverityColor(mh.psychosis)
     self:drawText("Psychosis:", 10, y, 1, 1, 1, 1, UIFont.Small)
     self:drawProgressBar(100, y, barWidth, barHeight, mh.psychosis, 100, r, g, b)
-    self:drawText(math.floor(mh.psychosis) .. "% (" .. self:getSeverityText(mh.psychosis) .. ")", 
+    self:drawText(math.floor(mh.psychosis) .. "% (" .. self:getSeverityText(mh.psychosis) .. ")",
                   barWidth + 110, y, r, g, b, 1, UIFont.Small)
     y = y + lineHeight + 8
+
+    -- Bipolar status
+    if mh.bipolar and mh.bipolar.subtype > 0 then
+        local moodNames = {"Stable", "Depressed", "Hypomanic", "Manic", "Mixed"}
+        self:drawText("Bipolar Severity: " .. math.floor(mh.bipolar.severity) .. "%", 10, y, 1, 1, 1, 1, UIFont.Small)
+        y = y + lineHeight
+        self:drawText("Mood: " .. moodNames[mh.bipolar.currentMoodState + 1] .. " (" .. math.floor(mh.bipolar.moodSeverity) .. "%)", 10, y, 1, 1, 1, 1, UIFont.Small)
+        y = y + lineHeight + 5
+    end
     
     -- Active Medications
     self:drawText("Active Medications:", 10, y, 0.8, 0.8, 1, 1, UIFont.Small)
@@ -148,6 +157,25 @@ function ISMentalHealthPanel:render()
         self:drawText("• Thresta (Level " .. mh.medications.thresta.level .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
         y = y + lineHeight - 2
         hasMeds = true
+    end
+
+    local bipolar = mh.bipolar
+    if bipolar then
+        if bipolar.moodStabilizers.lithizone.level > 0 then
+            self:drawText("• Lithizone (" .. string.format("%.1f", bipolar.moodStabilizers.lithizone.bloodLevel) .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
+            y = y + lineHeight - 2
+            hasMeds = true
+        end
+        if bipolar.moodStabilizers.valprex.level > 0 then
+            self:drawText("• Valprex (Level " .. math.floor(bipolar.moodStabilizers.valprex.level) .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
+            y = y + lineHeight - 2
+            hasMeds = true
+        end
+        if bipolar.moodStabilizers.lamotrigex.level > 0 then
+            self:drawText("• Lamotrigex (Level " .. math.floor(bipolar.moodStabilizers.lamotrigex.level) .. ")", 20, y, 0.6, 1, 0.6, 1, UIFont.Small)
+            y = y + lineHeight - 2
+            hasMeds = true
+        end
     end
     
     if not hasMeds then

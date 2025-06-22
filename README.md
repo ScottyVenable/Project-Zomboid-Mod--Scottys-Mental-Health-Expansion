@@ -17,6 +17,7 @@ Surviving the zombie apocalypse isn't just about physical health - mental well-b
 - **Fictional Medication System**: Three unique medications with realistic effects and side effects
 - **Coping Mechanisms**: Journal therapy, comfort items, and meditation/rest activities
 - **Mental Health UI Tab**: Integrated panel in the health interface with progress bars and symptom tracking
+- **Mood Tracking Tab**: Unlock by reading the Mood Tracking Workbook to log daily moods
 - **Symptom Manifestation**: Real gameplay effects including panic attacks, hallucinations, and fatigue
 
 ## 📸 Screenshots
@@ -46,6 +47,7 @@ Surviving the zombie apocalypse isn't just about physical health - mental well-b
 - **Serizon** (SSRI-like) - Long-term depression treatment with drowsiness side effects
 - **Kaletraxin** (Benzodiazepine-like) - Fast-acting anxiety relief, short duration
 - **Thresta** (Antipsychotic-like) - Reduces psychotic symptoms and severe anxiety
+- **Lithizone, Valprex, Lamotrigex** - Mood stabilizers for bipolar disorder with realistic side effects
 
 Each medication has:
 - Realistic onset times and duration

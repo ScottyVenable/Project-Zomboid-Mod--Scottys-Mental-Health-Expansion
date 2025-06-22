@@ -59,7 +59,12 @@ function MentalHealthSystem.updateMentalHealth(player)
     
     -- Natural recovery factors
     MentalHealthSystem.applyRecovery(player, mh, timeDelta)
-    
+
+    -- Bipolar-specific updates
+    if BipolarSystem then
+        BipolarSystem.updateBipolar(player, mh, currentTime, timeDelta)
+    end
+
     mh.lastUpdate = currentTime
 end
 
@@ -264,8 +269,9 @@ end
 
 -- Trigger hallucination
 function MentalHealthSystem.triggerHallucination(player, mh)
-    
-    if ZombRand(3) == 0 then
+
+    local hallucinationType = ZombRand(3)
+    if hallucinationType == 0 then
         -- Audio hallucination (more realistic to psychosis)
         
         -- Play a subtle, ambiguous sound (not always obvious or dramatic)
@@ -359,7 +365,7 @@ function MentalHealthSystem.triggerHallucination(player, mh)
         end
 
         return
-    if ZombRand(3) == 1 then
+    elseif hallucinationType == 1 then
         local visualHallucinationType = {
             "shadow", "figure", "creature", "zombie", "car"
         }
